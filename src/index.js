@@ -6,6 +6,7 @@ import bushTextureSource from './images/textures/house/bush.jpg'
 import spaceTextureSource from './images/textures/wallpaper.jpg'
 
 import * as THREE from 'three'
+import Vaisseau from '../src/js/Spaceship'
 
 /**
  * Textures
@@ -16,7 +17,6 @@ const spaceTexture = textureLoader.load(spaceTextureSource)
 const grassTexture = textureLoader.load(grassTextureSource)
 const wallTexture = textureLoader.load(wallTextureSource)
 const roofTexture = textureLoader.load(roofTextureSource)
-const bushTexture = textureLoader.load(bushTextureSource)
 
 grassTexture.wrapS = THREE.RepeatWrapping
 grassTexture.wrapT = THREE.RepeatWrapping
@@ -90,6 +90,7 @@ window.addEventListener('mousemove', (_event) =>
  * Scene
  */
 const scene = new THREE.Scene()
+//
 
 /**
  * Camera
@@ -97,36 +98,33 @@ const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 100)
 camera.position.z = 3
 scene.add(camera)
-
-
-
-
+//
 
 /**
  * House
  */
 const house = new THREE.Object3D()
 scene.add(house)
+//
 
 /**
  * Wallpaper
  */
 const wallpaper = new THREE.Mesh(
     new THREE.SphereGeometry(50,50),
-    new THREE.MeshStandardMaterial({side:THREE.DoubleSide, map:spaceTexture})
+    new THREE.MeshStandardMaterial({ side:THREE.DoubleSide, map:spaceTexture})
 )
 house.add(wallpaper)
-
-
+//
 
 /**
- * Spaceship
+ * Vaisseau
  */
-const spaceShip = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(1,1,1),
-    new THREE.MeshStandardMaterial({color:0xf0000})
-)
-house.add(spaceShip)
+const vaisseau = new Vaisseau({
+    textureLoader:textureLoader
+})
+scene.add(vaisseau.spaceShip)
+//
 
 /**
  * Bullet
@@ -139,18 +137,34 @@ const bullet = new THREE.Mesh(
 house.add(bullet)
 bullet.position.x = 1
 
- 
+     //Bullet
+     window.addEventListener("keydown", (_event) =>
+     {
+         if(event.keyCode == 32)
+         {
+             bullet.position.z == 2
+         }
+         const reachPoint = bullet.position.z -= 1 
+         if(bullet.position.z == reachPoint)
+         {
+             console.log('spaceShip.remove(bullet)')
+         }
+     })
 
 
 // bullet.position.z -= 2
 
+
+//
+
+
 /**
  * Lights
  */
-const doorLight = new THREE.PointLight()
-doorLight.position.x = - 1.02
-doorLight.castShadow = true
-house.add(doorLight)
+// const doorLight = new THREE.PointLight()
+// doorLight.position.x = - 1.02
+// doorLight.castShadow = true
+// scene.add(doorLight)
 
 const ambientLight = new THREE.AmbientLight(0x555555)
 scene.add(ambientLight)
@@ -165,6 +179,7 @@ sunLight.shadow.camera.right = 1.20
 sunLight.shadow.camera.bottom = - 1.20
 sunLight.shadow.camera.left = - 1.20
 scene.add(sunLight)
+//
 
 /**
  * Renderer
@@ -181,19 +196,7 @@ const loop = () =>
 {
     window.requestAnimationFrame(loop)
 
-    //Bullet
-    window.addEventListener("keydown", (_event) =>
-{
-    window.requestAnimationFrame(loop)
 
-        if(event.keyCode == 32   )
-        {
-            bullet.position.z -= 0.05
-        }
-        // else(bullet.position == -5){
-        //     bullet.position -= 0.05
-        // }
-})
 
     //Update camera
     camera.position.x = cursor.x * 3
