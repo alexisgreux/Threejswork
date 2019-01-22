@@ -18,9 +18,8 @@ spaceTexture.wrapS = THREE.RepeatWrapping
 spaceTexture.wrapT = THREE.RepeatWrapping
 spaceTexture.repeat.x = 1
 spaceTexture.repeat.y = 1
-
-
 //
+
 /**
  * Sizes
  */
