@@ -2,9 +2,7 @@ import './css/style.styl'
 import grassTextureSource from './images/grass.jpg'
 import wallTextureSource from './images/textures/house/wall.jpg'
 import roofTextureSource from './images/textures/house/roof.jpg'
-import bushTextureSource from './images/textures/house/bush.jpg'
-import spaceTextureSource from './images/textures/wallpaper.jpg'
-
+import spaceTextureSource from './images/textures/spaceShip.jpg'
 import * as THREE from 'three'
 import Vaisseau from '../src/js/Spaceship'
 
@@ -37,6 +35,7 @@ spaceTexture.wrapS = THREE.RepeatWrapping
 spaceTexture.wrapT = THREE.RepeatWrapping
 spaceTexture.repeat.x = 1
 spaceTexture.repeat.y = 1
+
 
 
 /**
@@ -121,7 +120,7 @@ house.add(wallpaper)
  * Vaisseau
  */
 const vaisseau = new Vaisseau({
-    textureLoader:textureLoader
+    textureLoader: textureLoader
 })
 scene.add(vaisseau.spaceShip)
 //
