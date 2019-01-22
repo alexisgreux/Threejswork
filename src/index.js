@@ -20,10 +20,10 @@ spaceTexture.repeat.x = 1
 spaceTexture.repeat.y = 1
 
 
-
-// /**
-//  * Sizes
-//  */
+//
+/**
+ * Sizes
+ */
 const sizes = {}
 sizes.width = window.innerWidth
 sizes.height = window.innerHeight
@@ -43,8 +43,7 @@ camera.updateProjectionMatrix()
 //Update renderer
 renderer.setSize(sizes.width, sizes.height)
 })
-
-
+//
 
 /**
  * Cursor
@@ -58,6 +57,7 @@ window.addEventListener('mousemove', (_event) =>
     cursor.x = _event.clientX / sizes.width - 0.5
     cursor.y = _event.clientY / sizes.height - 0.5
 })
+//
 
 /**
  * Scene
@@ -99,36 +99,36 @@ const vaisseau = new Vaisseau({
 scene.add(vaisseau.spaceShip)
 //
 
-/**
- * Bullet
- */
-const bullet = new THREE.Mesh(
-    new THREE.BoxGeometry(0.05,0.05,1),
-    new THREE.MeshStandardMaterial({color:0xf0152})
+// /**
+//  * Bullet
+//  */
+// const bullet = new THREE.Mesh(
+//     new THREE.BoxGeometry(0.05,0.05,1),
+//     new THREE.MeshStandardMaterial({color:0xf0152})
 
-)
-scene2.add(bullet)
-bullet.position.x = 1
+// )
+// scene2.add(bullet)
+// bullet.position.x = 1
 
-     //Bullet
-     window.addEventListener("keydown", (_event) =>
-     {
-         if(event.keyCode == 32)
-         {
-             bullet.position.z == 2
-         }
-         const reachPoint = bullet.position.z -= 1 
-         if(bullet.position.z == reachPoint)
-         {
-             console.log('spaceShip.remove(bullet)')
-         }
-     })
-
-
-// bullet.position.z -= 2
+//      //Bullet
+//      window.addEventListener("keydown", (_event) =>
+//      {
+//          if(event.keyCode == 32)
+//          {
+//              bullet.position.z == 2
+//          }
+//          const reachPoint = bullet.position.z -= 1 
+//          if(bullet.position.z == reachPoint)
+//          {
+//              console.log('spaceShip.remove(bullet)')
+//          }
+//      })
 
 
-//
+// // bullet.position.z -= 2
+
+
+// //
 
 
 /**
@@ -161,6 +161,7 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(sizes.width, sizes.height)
 renderer.shadowMap.enabled = true
 document.body.appendChild(renderer.domElement)
+//
 
 /**
  * Loop
@@ -180,29 +181,4 @@ const loop = () =>
     renderer.render(scene, camera)
 }
 loop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Hot
-// if(module.hot)
-// {
-//     module.hot.accept()
-
-//     module.hot.dispose(() =>
-//     {
-//         console.log('dispose')
-//     })
-// }
+//
