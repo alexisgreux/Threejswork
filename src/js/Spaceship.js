@@ -5,8 +5,8 @@ import * as THREE from 'three'
 
 
 export default class Vaisseau{
-    constructor(_options){        
-        this.container = new THREE.Object3D()
+    constructor(_options){
+        // this.container = new THREE.Object3D()
         
         this.textureLoader = _options.textureLoader
         
@@ -28,7 +28,7 @@ export default class Vaisseau{
     
         )
         
-        this.container.add(this.spaceShip.mesh)
+        // this.container.add(this.spaceShip.mesh)
 
         // spaceShip.rotation.z = 5
         this.spaceShip.rotation.y = 22
@@ -37,7 +37,7 @@ export default class Vaisseau{
         //rotation
         window.addEventListener("mousemove", (_event)=>
         {
-            console.log(Math.round(_event.clientX/ innerHeight))
+            console.log(Math.round(_event.clientX / innerHeight))
             if(event.clientX>=0){
                 this.spaceShip.rotation.z -= 0.01
             }

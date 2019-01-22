@@ -1,10 +1,9 @@
 import './css/style.styl'
-import grassTextureSource from './images/grass.jpg'
-import wallTextureSource from './images/textures/house/wall.jpg'
-import roofTextureSource from './images/textures/house/roof.jpg'
 import spaceTextureSource from './images/textures/spaceShip.jpg'
+import wallpaperTextureSource from './images/textures/wallpaper.jpg'
 import * as THREE from 'three'
 import Vaisseau from '../src/js/Spaceship'
+
 
 /**
  * Textures
@@ -12,24 +11,8 @@ import Vaisseau from '../src/js/Spaceship'
 const textureLoader = new THREE.TextureLoader()
 
 const spaceTexture = textureLoader.load(spaceTextureSource)
-const grassTexture = textureLoader.load(grassTextureSource)
-const wallTexture = textureLoader.load(wallTextureSource)
-const roofTexture = textureLoader.load(roofTextureSource)
+const wallpaperTexture = textureLoader.load(wallpaperTextureSource)
 
-grassTexture.wrapS = THREE.RepeatWrapping
-grassTexture.wrapT = THREE.RepeatWrapping
-grassTexture.repeat.x = 2
-grassTexture.repeat.y = 2
-
-wallTexture.wrapS = THREE.RepeatWrapping
-wallTexture.wrapT = THREE.RepeatWrapping
-wallTexture.repeat.x = 2
-wallTexture.repeat.y = 2
-
-roofTexture.wrapS = THREE.RepeatWrapping
-roofTexture.wrapT = THREE.RepeatWrapping
-roofTexture.repeat.x = 4
-roofTexture.repeat.y = 4
 
 spaceTexture.wrapS = THREE.RepeatWrapping
 spaceTexture.wrapT = THREE.RepeatWrapping
@@ -38,18 +21,9 @@ spaceTexture.repeat.y = 1
 
 
 
-/**
- * Wallpaper
+// /**
+//  * Sizes
 //  */
-// const space = new THREE.Mesh(
-//     new THREE.SphereGeometry(6),
-//     new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, map : grassTexture })
-//     )
-    
-//     scene.add(space)
-/**
- * Sizes
- */
 const sizes = {}
 sizes.width = window.innerWidth
 sizes.height = window.innerHeight
@@ -100,10 +74,10 @@ scene.add(camera)
 //
 
 /**
- * House
+ * Scene2
  */
-const house = new THREE.Object3D()
-scene.add(house)
+const scene2 = new THREE.Object3D()
+scene.add(scene2)
 //
 
 /**
@@ -111,9 +85,9 @@ scene.add(house)
  */
 const wallpaper = new THREE.Mesh(
     new THREE.SphereGeometry(50,50),
-    new THREE.MeshStandardMaterial({ side:THREE.DoubleSide, map:spaceTexture})
+    new THREE.MeshStandardMaterial({ side:THREE.DoubleSide, map:wallpaperTexture})
 )
-house.add(wallpaper)
+scene2.add(wallpaper)
 //
 
 /**
@@ -133,7 +107,7 @@ const bullet = new THREE.Mesh(
     new THREE.MeshStandardMaterial({color:0xf0152})
 
 )
-house.add(bullet)
+scene2.add(bullet)
 bullet.position.x = 1
 
      //Bullet
