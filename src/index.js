@@ -5,6 +5,11 @@ import * as THREE from 'three'
 import Vaisseau from '../src/js/Spaceship'
 
 
+import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
+
+
+
+
 /**
  * Textures
  */
@@ -55,6 +60,8 @@ window.addEventListener('mousemove', (_event) =>
 {
     cursor.x = _event.clientX / sizes.width - 0.5
     cursor.y = _event.clientY / sizes.height - 0.5
+    // console.log(cursor.x)
+
 })
 //
 
@@ -93,7 +100,8 @@ scene2.add(wallpaper)
  * Vaisseau
  */
 const vaisseau = new Vaisseau({
-    textureLoader: textureLoader
+    textureLoader: textureLoader,
+    cursor: cursor
 })
 scene.add(vaisseau.spaceShip)
 //
@@ -169,7 +177,7 @@ const loop = () =>
 {
     window.requestAnimationFrame(loop)
 
-
+    vaisseau.cursor = cursor
 
     //Update camera
     camera.position.x = cursor.x * 3

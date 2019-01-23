@@ -9,6 +9,7 @@ export default class Vaisseau{
         // this.container = new THREE.Object3D()
         
         this.textureLoader = _options.textureLoader
+        this.cursor = _options.cursor
         
         this.setspaceShip()
     }
@@ -33,15 +34,45 @@ export default class Vaisseau{
         //rotation
         window.addEventListener("mousemove", (_event)=>
         {
-            console.log(_event.clientX / innerHeight)
-            if(event.clientX>=0)
-            {
-                this.spaceShip.rotation.z -= 0.01
+            //Axe X
+            if(0.25 < this.cursor.x && this.spaceShip.rotation.z < 0.6)
+            {                
+                this.spaceShip.rotation.z += 0.04   
             }
-            if(event.clientX =1)
-            {
-                this.spaceShip.rotation.z += 0.01
+
+            else if (this.cursor.x < -0.25 && this.spaceShip.rotation.z > -0.6) {
+                this.spaceShip.rotation.z -= 0.04
             }
+
+            //Axe Y
+            if(0.25 < this.cursor.y && this.spaceShip.rotation.x < 0.6)
+            {                
+                this.spaceShip.rotation.x += 0.03   
+            }
+
+            else if (this.cursor.y < -0.25 && this.spaceShip.rotation.x > -0.6) {
+                this.spaceShip.rotation.x -= 0.03
+            }
+
+            // if(event.clientX >=1)
+            // {
+            //     this.spaceShip.rotation.z = this.spaceShip.rotation.z -=0.01 
+            // }
+
+            // if(event.clientX <1)
+            // {
+            //     this.spaceShip.rotation.z -= 0.03
+            // }
+            // else
+            // {
+            //     this.spaceShip.rotation.z = this.spaceShip.rotation.z += 0.01
+            // }
+            //Axe Y
+            // console.log(_event.clientY /innerHeight)
+            // if(event.clientY >=0)
+            // {
+            //     this.spaceShip.rotation.x += 0.01
+            // }
         })
         // window.addEventListener("mousemove", (_event)=>
         // {
@@ -52,5 +83,3 @@ export default class Vaisseau{
 
     }
 }
-
-console.log('coucou')
