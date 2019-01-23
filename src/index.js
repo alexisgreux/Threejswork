@@ -40,13 +40,13 @@ window.addEventListener('resize', () =>
     sizes.height = window.innerHeight
 
     
-//Update camera
-camera.aspect = sizes.width / sizes.height
-camera.updateProjectionMatrix()
+    //Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
 
 
-//Update renderer
-renderer.setSize(sizes.width, sizes.height)
+    //Update renderer
+    renderer.setSize(sizes.width, sizes.height)
 })
 //
 
@@ -61,8 +61,6 @@ window.addEventListener('mousemove', (_event) =>
 {
     cursor.x = _event.clientX / sizes.width - 0.5
     cursor.y = _event.clientY / sizes.height - 0.5
-    // console.log(cursor.x)
-
 })
 //
 
@@ -75,7 +73,7 @@ const scene = new THREE.Scene()
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 100)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 2000)
 camera.position.z = 1
 scene.add(camera)
 //
@@ -91,7 +89,7 @@ scene.add(scene2)
  * Wallpaper
  */
 const wallpaper = new THREE.Mesh(
-    new THREE.SphereGeometry(50,50),
+    new THREE.SphereGeometry(100, 100),
     new THREE.MeshStandardMaterial({ side:THREE.DoubleSide, map:wallpaperTexture})
 )
 scene2.add(wallpaper)
@@ -100,11 +98,12 @@ scene2.add(wallpaper)
 /**
  * Vaisseau
  */
-const vaisseau = new Vaisseau({
+const vaisseau = new Vaisseau
+({
     textureLoader: textureLoader,
     cursor: cursor
 })
-// scene.add(vaisseau.spaceShip)
+scene.add(vaisseau.object)
 
 
 
@@ -145,11 +144,6 @@ const vaisseau = new Vaisseau({
 /**
  * Lights
  */
-// const doorLight = new THREE.PointLight()
-// doorLight.position.x = - 1.02
-// doorLight.castShadow = true
-// scene.add(doorLight)
-
 const ambientLight = new THREE.AmbientLight(0x555555)
 scene.add(ambientLight)
 
@@ -165,6 +159,9 @@ sunLight.shadow.camera.left = - 1.20
 scene.add(sunLight)
 //
 
+/**
+ * Importation Spaceship
+ */
 // import spaceShipObject from './assets/CartoonRocket.obj'
 // import spaceShipMaterials from './assets/CartoonRocket.mtl'
 import spaceShipObject from './assets/spaceShip.obj'
@@ -173,7 +170,7 @@ import spaceShipMaterials from './assets/spaceShip.mtl'
 const mtlLoader = new MTLLoader()
 const objLoader = new OBJLoader()
 
-mtlLoader.load(spaceShipMaterials,(materials) =>
+mtlLoader.load(spaceShipMaterials, (materials) =>
 {
     materials.preload()
     objLoader.setMaterials(materials)
@@ -183,9 +180,15 @@ mtlLoader.load(spaceShipMaterials,(materials) =>
         object.scale.y = 10
         object.scale.z = 10
 
-        // object.position.z = 100 
-        // object.position.y = 100 
-
+        object.position.z -= 10 
+        
+        function rotateObject(object, degreeX = 0, degreeY = 0, degreeZ = 0)
+        {
+            object.rotateX(THREE.Math.degToRad(degreeX))
+            object.rotateY(THREE.Math.degToRad(degreeY))
+            object.rotateZ(THREE.Math.degToRad(degreeZ))
+        }
+        rotateObject(object, 30, -99, -10)
         scene.add(object)
     })
 })

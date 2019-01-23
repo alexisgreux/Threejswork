@@ -21,7 +21,7 @@ export default class Vaisseau{
      */
         this.spaceShip = {}
         this.spaceShip = new THREE.Mesh(
-            new THREE.CylinderBufferGeometry(0.3,2,1,3),
+            new THREE.CylinderBufferGeometry(0.3, 2, 1, 3),
             new THREE.MeshStandardMaterial({
                 map: this.textureLoader.load(spaceShipTextureSource),
                 side:THREE.DoubleSide, 
@@ -55,33 +55,6 @@ export default class Vaisseau{
             else if (this.cursor.y < -0.008 && this.spaceShip.rotation.x > -0.25) {
                 this.spaceShip.rotation.x -= 0.04
             }
-
-            // if(event.clientX >=1)
-            // {
-            //     this.spaceShip.rotation.z = this.spaceShip.rotation.z -=0.01 
-            // }
-
-            // if(event.clientX <1)
-            // {
-            //     this.spaceShip.rotation.z -= 0.03
-            // }
-            // else
-            // {
-            //     this.spaceShip.rotation.z = this.spaceShip.rotation.z += 0.01
-            // }
-            //Axe Y
-            // console.log(_event.clientY /innerHeight)
-            // if(event.clientY >=0)
-            // {
-            //     this.spaceShip.rotation.x += 0.01
-            // }
         })
-        // window.addEventListener("mousemove", (_event)=>
-        // {
-        //     if(event.clientY = 1){ 
-        //     this.spaceShip.rotation.y -= 0.01
-        //     }
-        // })
-
     }
 }
