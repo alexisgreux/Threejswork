@@ -1,11 +1,12 @@
 import './css/style.styl'
 import spaceTextureSource from './images/textures/spaceShip.jpg'
 import wallpaperTextureSource from './images/textures/wallpaper.jpg'
-import * as THREE from 'three'
 import Vaisseau from '../src/js/Spaceship'
 
+import * as THREE from 'three'
 
 import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
+
 
 
 
@@ -75,7 +76,7 @@ const scene = new THREE.Scene()
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 100)
-camera.position.z = 3
+camera.position.z = 1
 scene.add(camera)
 //
 
@@ -103,7 +104,10 @@ const vaisseau = new Vaisseau({
     textureLoader: textureLoader,
     cursor: cursor
 })
-scene.add(vaisseau.spaceShip)
+// scene.add(vaisseau.spaceShip)
+
+
+
 //
 
 // /**
@@ -160,6 +164,31 @@ sunLight.shadow.camera.bottom = - 1.20
 sunLight.shadow.camera.left = - 1.20
 scene.add(sunLight)
 //
+
+// import spaceShipObject from './assets/CartoonRocket.obj'
+// import spaceShipMaterials from './assets/CartoonRocket.mtl'
+import spaceShipObject from './assets/spaceShip.obj'
+import spaceShipMaterials from './assets/spaceShip.mtl'
+
+const mtlLoader = new MTLLoader()
+const objLoader = new OBJLoader()
+
+mtlLoader.load(spaceShipMaterials,(materials) =>
+{
+    materials.preload()
+    objLoader.setMaterials(materials)
+    objLoader.load(spaceShipObject, (object) =>
+    {
+        object.scale.x = 10
+        object.scale.y = 10
+        object.scale.z = 10
+
+        // object.position.z = 100 
+        // object.position.y = 100 
+
+        scene.add(object)
+    })
+})
 
 /**
  * Renderer

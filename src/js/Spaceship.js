@@ -35,23 +35,25 @@ export default class Vaisseau{
         window.addEventListener("mousemove", (_event)=>
         {
             //Axe X
-            if(0.25 < this.cursor.x && this.spaceShip.rotation.z < 0.6)
+            //rotation vers la droite
+            if(0.22 < this.cursor.x && this.spaceShip.rotation.z < 0.8)
             {                
-                this.spaceShip.rotation.z += 0.04   
+                this.spaceShip.rotation.z += 0.05 
             }
-
-            else if (this.cursor.x < -0.25 && this.spaceShip.rotation.z > -0.6) {
-                this.spaceShip.rotation.z -= 0.04
+            //rotation vers la gauche
+            else if (this.cursor.x < -0.22 && this.spaceShip.rotation.z > -0.8) {
+                this.spaceShip.rotation.z -= 0.05
             }
 
             //Axe Y
-            if(0.25 < this.cursor.y && this.spaceShip.rotation.x < 0.6)
+            //rotation vers le haut
+            if(0.008 < this.cursor.y && this.spaceShip.rotation.x < 0.25)
             {                
-                this.spaceShip.rotation.x += 0.03   
+                this.spaceShip.rotation.x += 0.04
             }
-
-            else if (this.cursor.y < -0.25 && this.spaceShip.rotation.x > -0.6) {
-                this.spaceShip.rotation.x -= 0.03
+            //rotation vers le bas
+            else if (this.cursor.y < -0.008 && this.spaceShip.rotation.x > -0.25) {
+                this.spaceShip.rotation.x -= 0.04
             }
 
             // if(event.clientX >=1)
