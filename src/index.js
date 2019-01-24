@@ -183,16 +183,14 @@ document.body.appendChild(renderer.domElement)
  * Loop
  */
 const loop = () =>
-{
+{ 
     window.requestAnimationFrame(loop)
-
     vaisseau.cursor = cursor
-
+    
     //Update camera
     camera.position.x = cursor.x * 50
     camera.position.y = - cursor.y * 50
-    // camera.lookAt(new THREE.Vector3())
-
+    
     // Renderer
     renderer.render(scene, camera)
 }
