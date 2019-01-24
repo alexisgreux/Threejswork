@@ -1,11 +1,12 @@
 import './css/style.styl'
-import spaceTextureSource from './images/textures/spaceShip.jpg'
 import wallpaperTextureSource from './images/textures/wallpaper.jpg'
 import Vaisseau from '../src/js/Spaceship'
+import Belt from '../src/js/belt'
+
 
 import * as THREE from 'three'
 
-import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
+
 
 
 
@@ -15,15 +16,7 @@ import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
-
-const spaceTexture = textureLoader.load(spaceTextureSource)
 const wallpaperTexture = textureLoader.load(wallpaperTextureSource)
-
-
-spaceTexture.wrapS = THREE.RepeatWrapping
-spaceTexture.wrapT = THREE.RepeatWrapping
-spaceTexture.repeat.x = 1
-spaceTexture.repeat.y = 1
 //
 
 /**
@@ -74,7 +67,7 @@ const scene = new THREE.Scene()
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 2000)
-camera.position.z = 1
+camera.position.z = 5
 scene.add(camera)
 //
 
@@ -89,7 +82,7 @@ scene.add(scene2)
  * Wallpaper
  */
 const wallpaper = new THREE.Mesh(
-    new THREE.SphereGeometry(100, 100),
+    new THREE.SphereGeometry(1000, 1000),
     new THREE.MeshStandardMaterial({ side:THREE.DoubleSide, map:wallpaperTexture})
 )
 scene2.add(wallpaper)
@@ -103,7 +96,17 @@ const vaisseau = new Vaisseau
     textureLoader: textureLoader,
     cursor: cursor
 })
-scene.add(vaisseau.object)
+scene.add(vaisseau.container)
+
+/**
+ * Belt
+ */
+const belt = new Belt
+({
+    textureLoader: textureLoader,
+    cursor: cursor
+})
+scene.add(belt)
 
 
 
@@ -164,34 +167,9 @@ scene.add(sunLight)
  */
 // import spaceShipObject from './assets/CartoonRocket.obj'
 // import spaceShipMaterials from './assets/CartoonRocket.mtl'
-import spaceShipObject from './assets/spaceShip.obj'
-import spaceShipMaterials from './assets/spaceShip.mtl'
 
-const mtlLoader = new MTLLoader()
-const objLoader = new OBJLoader()
 
-mtlLoader.load(spaceShipMaterials, (materials) =>
-{
-    materials.preload()
-    objLoader.setMaterials(materials)
-    objLoader.load(spaceShipObject, (object) =>
-    {
-        object.scale.x = 10
-        object.scale.y = 10
-        object.scale.z = 10
 
-        object.position.z -= 10 
-        
-        function rotateObject(object, degreeX = 0, degreeY = 0, degreeZ = 0)
-        {
-            object.rotateX(THREE.Math.degToRad(degreeX))
-            object.rotateY(THREE.Math.degToRad(degreeY))
-            object.rotateZ(THREE.Math.degToRad(degreeZ))
-        }
-        rotateObject(object, 30, -99, -10)
-        scene.add(object)
-    })
-})
 
 /**
  * Renderer
@@ -212,8 +190,8 @@ const loop = () =>
     vaisseau.cursor = cursor
 
     //Update camera
-    camera.position.x = cursor.x * 3
-    camera.position.y = - cursor.y * 3
+    camera.position.x = cursor.x * 50
+    camera.position.y = - cursor.y * 50
     // camera.lookAt(new THREE.Vector3())
 
     // Renderer
