@@ -48,18 +48,13 @@ export default class Belt
         this.belt.points = new THREE.Points(this.belt.geometry, this.belt.material)
         this.container.add(this.belt.points)
 
-/**
- * loop
- */
+        /**
+        * loop
+        */
         const loop = () =>
         {
             //Belt rotating
             this.container.position.z += 3
-            // belt.container.rotation.x += 0.05
-
-            // this.container.position.x = this.cursor.y.belt * 0
-            // this.container.position.y = this.cursor.x.belt = 0
-
             window.requestAnimationFrame(loop)
 
         }

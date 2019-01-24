@@ -48,12 +48,7 @@ export default class Vaisseau{
     {
      /**
      * Spaceship
-     */
- 
-    
-        // this.container.rotation.y = 22
-        // this.container.position.z -= 1
-        
+     */        
         //rotation
         window.addEventListener("mousemove", (_event)=>
         {
@@ -61,25 +56,14 @@ export default class Vaisseau{
             //rotation vers la droite
             if(0.15 < this.cursor.x && this.container.rotation.z < 0.8)
             {                
-                this.container.rotation.z += 0.05
+                this.container.rotation.z += 0.06
                 this.container.position.x -= 1
             }
             //rotation vers la gauche
             else if ( -0.15 > this.cursor.x  && this.container.rotation.z > -0.8) {
-                this.container.rotation.z -= 0.05
+                this.container.rotation.z -= 0.06
                 this.container.position.x += 1
 
-            }
-
-            //Axe Y
-            //rotation vers le haut
-            if(0.008 < this.cursor.y && this.container.rotation.x < 0.10)
-            {                
-                this.container.rotation.x += 0.05
-            }
-            //rotation vers le bas
-            else if (this.cursor.y < -0.008 && this.container.rotation.x > -0.10) {
-                this.container.rotation.x -= 0.05
             }
         })
     }

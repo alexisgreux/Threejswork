@@ -187,7 +187,7 @@ const loop = () =>
     window.requestAnimationFrame(loop)
     vaisseau.cursor = cursor
     
-    //Update camera
+    // //Update camera
     camera.position.x = cursor.x * 50
     camera.position.y = - cursor.y * 50
     
