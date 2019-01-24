@@ -104,9 +104,8 @@ scene.add(vaisseau.container)
 const belt = new Belt
 ({
     textureLoader: textureLoader,
-    cursor: cursor
 })
-scene.add(belt)
+scene.add(belt.container)
 
 
 

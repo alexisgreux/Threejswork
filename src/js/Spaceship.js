@@ -59,13 +59,13 @@ export default class Vaisseau{
         {
             //Axe X
             //rotation vers la droite
-            if(0.10 < this.cursor.x && this.container.rotation.z < 0.8)
+            if(0.15 < this.cursor.x && this.container.rotation.z < 0.8)
             {                
                 this.container.rotation.z += 0.05
                 this.container.position.x -= 1
             }
             //rotation vers la gauche
-            else if (this.cursor.x < -0.10 && this.container.rotation.z > -0.8) {
+            else if ( -0.15 > this.cursor.x  && this.container.rotation.z > -0.8) {
                 this.container.rotation.z -= 0.05
                 this.container.position.x += 1
 
