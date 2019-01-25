@@ -2,7 +2,8 @@ import './css/style.styl'
 import wallpaperTextureSource from './images/textures/wallpaper.jpg'
 import Vaisseau from '../src/js/Spaceship'
 import Belt from '../src/js/belt'
-
+import Ennemy from '../src/js/ennemy'
+// import mySound from '../src/music/crimsonFlames.mp3'
 
 import * as THREE from 'three'
 
@@ -10,6 +11,8 @@ import * as THREE from 'three'
 
 
 
+
+// mySound = new Audio()
 
 
 /**
@@ -64,6 +67,13 @@ const scene = new THREE.Scene()
 //
 
 /**
+ * Scene2
+ */
+const scene2 = new THREE.Object3D()
+scene.add(scene2)
+//
+
+/**
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 2000)
@@ -71,12 +81,7 @@ camera.position.z = 5
 scene.add(camera)
 //
 
-/**
- * Scene2
- */
-const scene2 = new THREE.Object3D()
-scene.add(scene2)
-//
+
 
 /**
  * Wallpaper
@@ -87,6 +92,9 @@ const wallpaper = new THREE.Mesh(
 )
 scene2.add(wallpaper)
 //
+/**
+ * Importation 3D  
+ */
 
 /**
  * Vaisseau
@@ -107,8 +115,17 @@ const belt = new Belt
 })
 scene.add(belt.container)
 
+/**
+ * Ennemy
+ */
+const ennemy = new Ennemy
+({
+    textureLoader: textureLoader,
+})
+scene.add(ennemy.container)
 
 
+//
 //
 
 // /**

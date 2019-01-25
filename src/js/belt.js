@@ -14,13 +14,6 @@ export default class Belt
 
     setBelt()
     {
-        
-        console.log('coucou')
-        // this.container.rotation.x += 0.05
-        // this.container.position.y -= 100
-        // this.container.position.z += 10
-        // this.container.rotation.x += 6
-        // this.container.rotation.z += 1
         this.belt = {}
         this.belt.geometry = new THREE.Geometry()
 
