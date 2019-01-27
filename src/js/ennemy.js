@@ -4,6 +4,7 @@ import{MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
 import ennemyObject from '../assets/ennemy.obj'
 import ennemyMaterials from '../assets/ennemy.mtl'
 
+
 export default class Ennemy
 {
     constructor(_options)
@@ -12,11 +13,11 @@ export default class Ennemy
 
 
         this.textureLoader = _options.textureLoader
+        this.cursor = _options.cursor
 
 
         const mtlLoader = new MTLLoader()
         const objLoader = new OBJLoader()
-
 
         mtlLoader.load(ennemyMaterials, (materials) =>
         {
@@ -50,10 +51,26 @@ export default class Ennemy
     {
         
         const loop = () =>{
-            function shoot(){
-                console.log("shoot")
-            }
-            setInterval(shoot, 5000)
+            //Position
+            window.addEventListener("mousemove", (_event) =>
+            {
+
+                //Axe X
+                //Position vers la droite
+                if(0.25 <= this.cursor.x && this.container.position.x <= 15)
+                {                
+                    // this.container.rotation.z += 0.06
+                    this.container.position.x += 2
+                }
+
+                //Position vers la gauche
+                else if ( -0.25 >= this.cursor.x  && this.container.position.x > -15) 
+                {
+                    // this.container.rotation.z -= 0.06
+                    this.container.position.x -= 2
+
+                }   
+            })
         }
         loop()
         

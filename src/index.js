@@ -3,7 +3,7 @@ import wallpaperTextureSource from './images/textures/wallpaper.jpg'
 import Vaisseau from '../src/js/Spaceship'
 import Belt from '../src/js/belt'
 import Ennemy from '../src/js/ennemy'
-// import mySound from '../src/music/crimsonFlames.mp3'
+import Ball from '../src/js/ball'
 
 import * as THREE from 'three'
 
@@ -11,8 +11,6 @@ import * as THREE from 'three'
 
 
 
-
-// mySound = new Audio()
 
 
 /**
@@ -78,11 +76,31 @@ scene.add(scene2)
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 2000)
 camera.position.z = 5
+
 scene.add(camera)
 //
 
+// /**
+//  * Music
+//  */
+
+// let listener = new THREE.AudioListener();
+// camera.add( listener );
+
+// // create a global audio source
+// let sound = new THREE.Audio( listener );
+
+// // load a sound and set it as the Audio object's buffer
+// let audioLoader = new THREE.AudioLoader();
+// audioLoader.load( '/crimsonFlames.mp3', function( buffer ) {
+// 	sound.setBuffer( buffer );
+// 	sound.setLoop( true );
+// 	sound.setVolume( 0.5 );
+// 	sound.play();
+// });
 
 
+ //
 /**
  * Wallpaper
  */
@@ -121,44 +139,23 @@ scene.add(belt.container)
 const ennemy = new Ennemy
 ({
     textureLoader: textureLoader,
+    cursor: cursor
 })
 scene.add(ennemy.container)
 
+/**
+ * Ball
+ */
+const ball = new Ball
+({
+    textureLoader: textureLoader,
+    cursor: cursor
+})
+scene.add(ball.container)
 
+ //
 //
 //
-
-// /**
-//  * Bullet
-//  */
-// const bullet = new THREE.Mesh(
-//     new THREE.BoxGeometry(0.05,0.05,1),
-//     new THREE.MeshStandardMaterial({color:0xf0152})
-
-// )
-// scene2.add(bullet)
-// bullet.position.x = 1
-
-//      //Bullet
-//      window.addEventListener("keydown", (_event) =>
-//      {
-//          if(event.keyCode == 32)
-//          {
-//              bullet.position.z == 2
-//          }
-//          const reachPoint = bullet.position.z -= 1 
-//          if(bullet.position.z == reachPoint)
-//          {
-//              console.log('spaceShip.remove(bullet)')
-//          }
-//      })
-
-
-// // bullet.position.z -= 2
-
-
-// //
-
 
 /**
  * Lights
@@ -178,13 +175,6 @@ sunLight.shadow.camera.left = - 1.20
 scene.add(sunLight)
 //
 
-/**
- * Importation Spaceship
- */
-// import spaceShipObject from './assets/CartoonRocket.obj'
-// import spaceShipMaterials from './assets/CartoonRocket.mtl'
-
-
 
 
 /**
@@ -201,6 +191,7 @@ document.body.appendChild(renderer.domElement)
  */
 const loop = () =>
 { 
+    
     window.requestAnimationFrame(loop)
     vaisseau.cursor = cursor
     

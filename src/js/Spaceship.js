@@ -6,7 +6,6 @@ import spaceShipObject from '../assets/spaceShip.obj'
 import spaceShipMaterials from '../assets/spaceShip.mtl'
 
 
-
 export default class Vaisseau{
     constructor(_options){
         this.container = new THREE.Object3D()
