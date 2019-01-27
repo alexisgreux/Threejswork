@@ -51,13 +51,17 @@ export default class Ball
             new THREE.MeshBasicMaterial({ map: this.textureLoader.load(ballTextureSource)})
             )
             ball.position.z = -100
-            ball.position.x = tab[getRandomInt()]
-            setInterval(this.ball, 2000)
-            this.container.add(ball)
             this.container.position.z += 2
+            if(this.container.position.z == ball.position.x)
+            {
+                ball.position.x = tab[getRandomInt()]
+                setInterval(this.ball, 2000)
+            }
+            this.container.add(ball)
+            
             })
 
-
+        
             
 
 
