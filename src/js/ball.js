@@ -23,7 +23,13 @@ export default class Ball
         console.log(tab[getRandomInt()])
         
 
-        
+        const ball = new THREE.Mesh(
+            new THREE.SphereBufferGeometry(20,20),
+            new THREE.MeshBasicMaterial({map: this.textureLoader.load(ballTextureSource)})
+        )
+            ball.position.z = -100
+            ball.position.x = tab[getRandomInt()]
+            this.container.add(ball)
 
         const loop = () =>{
             //Position
@@ -46,19 +52,20 @@ export default class Ball
 
                 }   
                 
-        const ball = new THREE.Mesh(
-            new THREE.SphereBufferGeometry(20,20),
-            new THREE.MeshBasicMaterial({ map: this.textureLoader.load(ballTextureSource)})
-            )
-            ball.position.z = -100
-            this.container.position.z += 2
-            if(this.container.position.z == ball.position.x)
-            {
-                ball.position.x = tab[getRandomInt()]
-                setInterval(this.ball, 2000)
-            }
-            this.container.add(ball)
-            
+                if(this.container.position.z % 100 === 0)
+                {
+
+                    
+                    const ball2 = new THREE.Mesh(
+                        new THREE.SphereBufferGeometry(20,20),
+                        new THREE.MeshBasicMaterial({map: this.textureLoader.load(ballTextureSource)})
+                        )
+                        this.container.position.z = -100
+                        this.container.position.x = tab[getRandomInt()]
+                        this.container.add(ball2)
+                }
+                this.container.position.z += 2
+
             })
 
         
@@ -67,6 +74,7 @@ export default class Ball
 
         }
         loop()
+        
     }
     
 }

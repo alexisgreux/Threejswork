@@ -80,24 +80,24 @@ camera.position.z = 5
 scene.add(camera)
 //
 
-/**
- * Music
- */
+// /**
+//  * Music
+//  */
 
-let listener = new THREE.AudioListener();
-camera.add( listener );
+// let listener = new THREE.AudioListener();
+// camera.add( listener );
 
-// create a global audio source
-let sound = new THREE.Audio( listener );
+// // create a global audio source
+// let sound = new THREE.Audio( listener );
 
-// load a sound and set it as the Audio object's buffer
-let audioLoader = new THREE.AudioLoader();
-audioLoader.load( '/crimsonFlames.mp3', function( buffer ) {
-	sound.setBuffer( buffer );
-	sound.setLoop( true );
-	sound.setVolume( 0.5 );
-	sound.play();
-});
+// // load a sound and set it as the Audio object's buffer
+// let audioLoader = new THREE.AudioLoader();
+// audioLoader.load( '/crimsonFlames.mp3', function( buffer ) {
+// 	sound.setBuffer( buffer );
+// 	sound.setLoop( true );
+// 	sound.setVolume( 0.5 );
+// 	sound.play();
+// });
 
 
  //
